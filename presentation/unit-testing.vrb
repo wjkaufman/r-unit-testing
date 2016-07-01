@@ -1,0 +1,20 @@
+\frametitle{Creating Unit Tests}
+
+\begin{itemize}
+\item Given a package
+\item
+\end{itemize}
+
+% checkFuncs
+\begin{lstlisting}[language=R, numbers = left]
+checkEquals(target, current, msg,
+	tolerance = .Machine$double.eps^0.5,
+	checkNames = TRUE, ...)
+checkEqualsNumeric(target, current, msg,
+	tolerance = .Machine$double.eps^0.5, ...)
+checkIdentical(target, current, msg)
+checkTrue(expr, msg)
+checkException(expr, msg,
+	silent = getOption("RUnit")$silent)
+DEACTIVATED(msg)
+\end{lstlisting}

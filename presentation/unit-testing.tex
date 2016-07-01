@@ -1,0 +1,93 @@
+\documentclass{beamer}
+
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{listings}
+
+\hypersetup{colorlinks = true, urlcolor = blue}
+
+\title{Unit Testing in R}
+\author{Will Kaufman}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+%\section[Outline]{}
+%\frame{\tableofcontents}
+
+\section{Introduction to Unit Testing}
+%%%
+\begin{frame}
+\frametitle{What is Unit Testing?}
+
+\begin{itemize}
+\item ``Unit testing is a software testing method by which individual units of source code\ldots are tested to determine whether they are fit for use."\footnote{\url{https://en.wikipedia.org/wiki/Unit_testing}}
+\item Allows for more efficient development of code and packages.
+\item Tests for each basic principle of the code, multiple situations and incorrect invocations.
+\item Newly discovered bugs and errors are added as additional test cases. 
+\end{itemize}
+\end{frame}
+
+\section{Unit Testing in R}
+%%%
+\begin{frame}
+	\frametitle{Options for Unit Testing in R}
+	
+	\begin{itemize}
+	\item RUnit by Matthias Burger, Klaus Juenemann, and Thomas Koenig.\footnote{\url{https://cran.r-project.org/web/packages/RUnit/index.html}.}
+	\item testthat by Hadley Wickham.\footnote{\url{https://cran.r-project.org/web/packages/testthat/index.html}.}
+	\item RUnit implements the same syntax as other unit testing implementations in other languages (JUnit, CppUnit, PerlUnit). This tutorial will focus on RUnit (though both are acceptable solutions).
+	\end{itemize}
+\end{frame}
+
+\subsection{RUnit Package}
+%%%
+\begin{frame}
+
+\frametitle{RUnit Documentation and Resources}
+
+\begin{itemize}
+\item For more detailed explanations and examples, see \href{https://cran.r-project.org/web/packages/RUnit/RUnit.pdf}{the reference manual} and \href{https://cran.r-project.org/web/packages/RUnit/vignettes/RUnit.pdf}{the package vignette}.
+\item For a short walkthrough of RUnit basics, see \href{http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/}{this tutorial by John White}.
+\item For other questions, Google is your friend.
+\end{itemize}
+
+\end{frame}
+
+%%%
+\begin{frame}[fragile]
+\frametitle{Creating Unit Tests}
+
+\begin{itemize}
+\item Given a package 
+\item
+\end{itemize}
+
+% checkFuncs
+\begin{lstlisting}[language=R, numbers = left]
+checkEquals(target, current, msg,
+	tolerance = .Machine$double.eps^0.5,
+	checkNames = TRUE, ...)
+checkEqualsNumeric(target, current, msg,
+	tolerance = .Machine$double.eps^0.5, ...)
+checkIdentical(target, current, msg)
+checkTrue(expr, msg)
+checkException(expr, msg,
+	silent = getOption("RUnit")$silent)
+DEACTIVATED(msg)
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Tests Involving Random Numbers}
+
+\begin{itemize}
+\item Specify the type of random number generator in \texttt{defineTestSuite}, and specify \texttt{set.seed} in the test function
+\end{itemize}
+
+\end{frame}
+
+\end{document}
+
