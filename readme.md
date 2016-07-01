@@ -28,8 +28,7 @@ library(runit)
 source(...) # other functions/code to test
 
 testsuite.c2f <- defineTestSuite(name = "c2f",
-                                 dirs = file.path("tests"),
-                                 testFileRegexp = "\\d+\\.R")
+	dirs = file.path("tests"))
 
 test.result <- runTestSuite(testsuite.c2f)
 printTextProtocol(test.result)
