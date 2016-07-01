@@ -95,5 +95,5 @@ printHTML.trackInfo(resTrack, baseDir = ".")
 ```
 
 # Sources
-[John White Tutorial](http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/)
-[RUnit Documentation](https://cran.r-project.org/web/packages/RUnit/RUnit.pdf)
+* [John White Tutorial](http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/)
+* [RUnit Documentation](https://cran.r-project.org/web/packages/RUnit/RUnit.pdf)
