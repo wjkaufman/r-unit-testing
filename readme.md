@@ -25,7 +25,7 @@ test.c2f <- function() {
 
 ### Defining a Test Suite
 
-Create a file named `run_tests.r` (or similar). This file will invoke all of the unit tests from the `tests` directory. Below is an example of `run_tests.r`.
+Create a file named `run_tests.r` outside of the `tests` directory. This file will invoke all of the unit tests from the `tests` directory. Below is an example of `run_tests.r`.
 
 ```{r}
 library(runit)
