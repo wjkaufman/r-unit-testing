@@ -9,6 +9,12 @@
 3. Write the test functions (the function name must begin with "test", such as `test.c2f`). Remember that they are called *unit* tests for a reason, so make sure that each test function relates to only a single part of the package.
 4. As new features are developed, new bugs are found, or new edge cases are discovered, continue creating new tests to account for these.
 
+```{r}
+test.c2f <- function() {
+	# check functions...
+}
+```
+
 #### Check Functions
 
 * `checkEquals`: Are two objects equal, including named attributes?
