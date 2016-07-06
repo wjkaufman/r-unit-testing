@@ -141,3 +141,4 @@ code-testthat/
 * [John White Tutorial](http://www.johnmyleswhite.com/notebook/2010/08/17/unit-testing-in-r-the-bare-minimum/)
 * [RUnit Documentation](https://cran.r-project.org/web/packages/RUnit/RUnit.pdf)
 * [testthat Documentation](http://r-pkgs.had.co.nz/tests.html)
+* [More testthat Documentation](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf)
