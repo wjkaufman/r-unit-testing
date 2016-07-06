@@ -1,5 +1,7 @@
 # Unit Testing in R
 
+This repository goes through how to set up unit testing using two popular R packages: RUnit and testthat.
+
 ## RUnit Package
 
 ### Writing Unit Tests
