@@ -1,11 +1,11 @@
 # Unit Testing in R
 
-## RUnit
+## RUnit Package
 
-### Creating Unit Tests
+### Writing Unit Tests
 
 1. Create a directory called `tests` where all test files will be stored.
-2. Create a file named `runit01.r` (or any name that follows a pattern) to contain the first set of tests.
+2. Create a file named `runit01.r` (or any name that starts with "runit") to contain the first set of tests.
 3. Write the test functions (the function name must begin with "test", such as `test.c2f`). Remember that they are called *unit* tests for a reason, so make sure that each test function relates to only a single part of the package.
 4. As new features are developed, new bugs are found, or new edge cases are discovered, continue creating new tests to account for these.
 
@@ -59,44 +59,82 @@ When specifying `testFileRegexp` and `testFuncRegexp` for unique test file and t
 
 Calling `printTextProtocol(test.result)` will print the test results to the console, outlining which tests passed or failed.
 
-### Inspecting Code
+The structure of the unit testing directories should look like this:
+```
+code-runit
+├── inspect-example.R
+├── run_tests.R
+├── sample.R
+└── tests
+    ├── runit01.R
+    ├── runit02.R
+    └── runit03.R
+```
 
-Inspecting code using `tracker` and `inspect` allows basic profiling of code and functions. Below is a simple example.
+## testthat Package
+
+The `testthat` package by Hadley Wickham is an alternative to the RUnit package. While `testthat` does not follow the syntax of xUnit variants, it is very flexible and easier to read and comprehend.
+
+### Writing Unit Tests
+
+1. Create a directory called `tests` where all test files will be stored.
+2. Create a file named `test01.r` (or any name that starts with "test") to contain the first set of tests.
+3. Write the tests, following the structure below. Each test begins with `test_that`, followed by a short description of the test and the "expectations" of the test.
 
 ```{r}
-## example functions
-foo <- function(x){
-	y <- 0
-	for(i in 1:100)
-	{
-		y <- y + i
-	}
-	return(y)
-}
+context("name of test")
 
-bar <- function(x){
-	y <- 0
-	for(i in 1:100)
-	{
-		y <- y - i
-	}
-	return(y)
-}
+test_that("str_length is number of characters", {
+  expect_equal(str_length("a"), 1)
+  expect_equal(str_length("ab"), 2)
+  expect_equal(str_length("abc"), 3)
+})
 
-## the object name track is 'fixed' (current implementation)
-track <- tracker()
-## initialize the tracker
-track$init()
+test_that("a second test", {
+	...
+})
+```
 
-## inspect the function
-## resFoo1 will contain the result of calling foo(50)
-resFoo1 <- inspect(foo(50), track = track)
-resFoo2 <- inspect(foo(20), track = track)
-resBar1 <- inspect(bar(30), track = track)
-## get the tracked function call info for all inspect calls
-resTrack <- track$getTrackInfo()
-## create HTML sites in folder ./results for all inspect calls
-printHTML.trackInfo(resTrack, baseDir = ".")
+#### Expectations
+
+Similar to the `check` functions in RUnit, expectations all start with `expect_`.
+
+* `expect_equal(actual, expected)`: equality within numerical tolerance
+* `expect_identical(actual, expected)`: exact equivalence
+* `expect_match(string, "Testing")`: matches a character vector against a regular expression. Below are variations on expect_match
+	* `expect_output()`
+	* `expect_message()`
+	* `expect_warning()`
+	* `expect_error()`
+* `expect_is(object, "class")`: checks that object inherits from the specified class
+* `expect_true()`: hopefully you get the pattern by now
+* `expect_false()`: ditto above
+
+## Defining Test Suite
+
+Create a file named `run_tests.R` outside of `tests` directory.
+
+```{r}
+# run_tests.R
+library(testthat)
+# other packages/sources needed to test
+source("sample.R")
+
+test_dir("tests", reporter = "Summary")
+```
+
+Running `test_dir` will invoke all of the tests, and print a summary of the test results. The context is printed, then the success or failure of each expectation, represented by dots (".") for success or a number for failure. `testthat` then summarizes the failed test.
+
+The structure of the unit testing directories should look like this:
+
+```
+code-testthat/
+├── run_tests.R
+├── sample.R
+└── tests
+    ├── test1.R
+    ├── test2.R
+    └── test3.R
 ```
 
 # Sources

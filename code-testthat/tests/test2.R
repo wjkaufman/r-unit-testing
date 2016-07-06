@@ -1,3 +1,5 @@
+context("factorial function")
+
 test_that("factorial function works on expected domain", {
   expect_equal(factorial(0), 1)
   expect_equal(factorial(5), 120)

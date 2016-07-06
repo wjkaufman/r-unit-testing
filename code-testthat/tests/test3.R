@@ -1,3 +1,5 @@
+context("is.prime function")
+
 test_that("is.prime works on expected domain", {
   expect_true(is.prime(3))
   expect_false(is.prime(0))
